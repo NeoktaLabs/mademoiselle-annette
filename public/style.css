@@ -179,6 +179,7 @@ img {
 
 #header_description .WhiteChampagne36 {
   display: block;
+  margin-bottom: 12px;
   color: #fff;
   font-family: var(--champagne);
   font-size: clamp(2.35rem, 5.7vw, 4.05rem);
@@ -292,8 +293,8 @@ article {
 
 #footer_ma {
   width: 100%;
-  margin-top: auto;
-  padding-top: clamp(64px, 10vw, 112px);
+  margin-top: 0;
+  padding-top: clamp(34px, 6vw, 58px);
   text-align: center;
 }
 
@@ -325,7 +326,7 @@ article {
 
   .brand-link {
     width: min(340px, 72vw);
-    margin-top: 12px;
+    margin-top: 20px;
   }
 
   #header_description {
@@ -338,6 +339,7 @@ article {
   }
 
   #header_description .WhiteChampagne36 {
+    margin-bottom: 10px;
     font-size: clamp(2.05rem, 10vw, 2.55rem);
     line-height: 0.98;
   }
@@ -376,7 +378,7 @@ article {
   }
 
   #footer_ma {
-    padding-top: 34px;
+    padding-top: 28px;
   }
 
   .legal-card {

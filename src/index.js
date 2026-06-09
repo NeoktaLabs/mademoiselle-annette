@@ -3,9 +3,9 @@ const SITE_ORIGIN = "https://mademoiselleannette.com";
 const pages = {
   "/": renderPage({
     lang: "fr-FR",
-    title: "Mademoiselle Annette Geneve - Personnel de Maison, Courtage immobilier",
+    title: "Mademoiselle Annette Genève | Personnel de Maison et Courtage immobilier",
     description:
-      "Mademoiselle Annette, société basée à Genève, est active dans le placement de personnel de maison, courtage immobilier et organisation de maison privée.",
+      "Mademoiselle Annette, société basée à Genève, accompagne maisons privées et particuliers exigeants en personnel de maison, organisation privée et courtage immobilier.",
     path: "/",
     tagline: "Conseils et Solutions",
     subtagline: "Personnel de Maison / Organisation de maison privée / Courtage immobilier",
@@ -19,9 +19,9 @@ const pages = {
   }),
   "/uk": renderPage({
     lang: "en",
-    title: "Mademoiselle Annette",
+    title: "Mademoiselle Annette Geneva | Domestic Staff and Real Estate Brokerage",
     description:
-      "Domestic Staff, Private Household Management and Real Estate Brokerage by Mademoiselle Annette.",
+      "Mademoiselle Annette provides domestic staff, private household management and real estate brokerage services for prestigious private residences.",
     path: "/uk",
     tagline: "Consulting and Solutions",
     subtagline: "Domestic Staff / Private Household Management / Real Estate Brokerage",
@@ -38,6 +38,7 @@ const pages = {
     title: "Mentions Légales | Mademoiselle Annette",
     description: "Mentions légales de Mademoiselle Annette.",
     path: "/mentions-legales",
+    noindex: true,
     tagline: "Conseils et Solutions",
     subtagline: "Personnel de Maison / Organisation de maison privée / Courtage immobilier",
     body: `
@@ -62,8 +63,9 @@ function contactBlock() {
   `;
 }
 
-function renderPage({ lang, title, description, path, tagline, subtagline, body }) {
+function renderPage({ lang, title, description, path, noindex = false, tagline, subtagline, body }) {
   const canonical = `${SITE_ORIGIN}${path === "/" ? "/" : path}`;
+  const isFrench = lang === "fr-FR";
   return `<!doctype html>
 <html lang="${lang}" prefix="og: http://ogp.me/ns#">
 <head>
@@ -71,15 +73,27 @@ function renderPage({ lang, title, description, path, tagline, subtagline, body 
   <meta name="viewport" content="width=device-width">
   <title>${title}</title>
   <meta name="description" content="${description}">
+  <meta name="robots" content="${noindex ? "noindex, follow" : "index, follow"}">
   <link rel="canonical" href="${canonical}">
-  <meta property="og:locale" content="${lang === "fr-FR" ? "fr_FR" : "en_GB"}">
+  ${path === "/" || path === "/uk" ? `<link rel="alternate" hreflang="fr" href="${SITE_ORIGIN}/">` : ""}
+  ${path === "/" || path === "/uk" ? `<link rel="alternate" hreflang="en" href="${SITE_ORIGIN}/uk">` : ""}
+  ${path === "/" || path === "/uk" ? `<link rel="alternate" hreflang="x-default" href="${SITE_ORIGIN}/">` : ""}
+  <meta property="og:locale" content="${isFrench ? "fr_FR" : "en_GB"}">
   <meta property="og:type" content="${path === "/mentions-legales" ? "article" : "website"}">
   <meta property="og:title" content="${title}">
   <meta property="og:description" content="${description}">
   <meta property="og:url" content="${canonical}">
   <meta property="og:site_name" content="Mademoiselle Annette">
-  <meta property="og:image" content="${SITE_ORIGIN}/wp-content/uploads/2014/01/hr.png">
+  <meta property="og:image" content="${SITE_ORIGIN}/images/logo_fr-jga.png">
+  <meta property="og:image:width" content="580">
+  <meta property="og:image:height" content="118">
+  <meta property="og:image:alt" content="Mademoiselle Annette">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="${title}">
+  <meta name="twitter:description" content="${description}">
+  <meta name="theme-color" content="#050504">
   <link rel="stylesheet" href="/style.css">
+  ${structuredData({ lang, title, description, canonical })}
 </head>
 <body class="custom-background full-width custom-font-enabled single-author">
   <div id="page">
@@ -90,7 +104,7 @@ function renderPage({ lang, title, description, path, tagline, subtagline, body 
       </div>
       <a class="brand-link" href="${path === "/uk" ? "/uk" : "/"}" aria-label="Mademoiselle Annette"><div id="header_title"></div></a>
       <div id="header_description">
-        <span class="WhiteChampagne36">${tagline}</span><br>
+        <h1 class="WhiteChampagne36">${tagline}</h1>
         <span class="WhiteChampagne20">${subtagline}</span>
       </div>
     </div>
@@ -108,10 +122,64 @@ function renderPage({ lang, title, description, path, tagline, subtagline, body 
 </html>`;
 }
 
+function structuredData({ lang, title, description, canonical }) {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": `${SITE_ORIGIN}/#business`,
+    name: "Mademoiselle Annette",
+    legalName: "A.JOSSERAND SA",
+    url: canonical,
+    headline: title,
+    description,
+    image: `${SITE_ORIGIN}/images/logo_fr-jga.png`,
+    email: "annette@mademoiselleannette.com",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Rue Jacques Grosselin 8",
+      postalCode: "1227",
+      addressLocality: "Carouge",
+      addressCountry: "CH"
+    },
+    areaServed: ["Geneva", "Switzerland"],
+    knowsLanguage: lang === "fr-FR" ? ["fr", "en"] : ["en", "fr"],
+    makesOffer: [
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Personnel de maison" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Organisation de maison privée" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Courtage immobilier" } }
+    ]
+  };
+
+  return `<script type="application/ld+json">${JSON.stringify(data)}</script>`;
+}
+
+function sitemapXml() {
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>${SITE_ORIGIN}/</loc><priority>1.0</priority></url>
+  <url><loc>${SITE_ORIGIN}/uk</loc><priority>0.9</priority></url>
+</urlset>`;
+}
+
+function robotsTxt() {
+  return `User-agent: *
+Allow: /
+Sitemap: ${SITE_ORIGIN}/sitemap.xml
+`;
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     const path = url.pathname.replace(/\/$/, "") || "/";
+
+    if (path === "/robots.txt") {
+      return text(robotsTxt(), "text/plain; charset=UTF-8");
+    }
+
+    if (path === "/sitemap.xml") {
+      return text(sitemapXml(), "application/xml; charset=UTF-8");
+    }
 
     if (pages[path]) {
       return html(pages[path]);
@@ -124,5 +192,11 @@ export default {
 function html(body) {
   return new Response(body, {
     headers: { "content-type": "text/html; charset=UTF-8" }
+  });
+}
+
+function text(body, contentType) {
+  return new Response(body, {
+    headers: { "content-type": contentType }
   });
 }
