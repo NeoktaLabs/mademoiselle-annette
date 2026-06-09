@@ -11,10 +11,10 @@
   --gold-soft: #e6d8b4;
   --ink: #050504;
   --white: #fffaf0;
-  --muted: rgba(255, 250, 240, 0.72);
-  --panel: rgba(11, 10, 8, 0.6);
-  --panel-border: rgba(230, 216, 180, 0.18);
-  --shadow: 0 28px 90px rgba(0, 0, 0, 0.48);
+  --muted: rgba(255, 250, 240, 0.68);
+  --panel: rgba(7, 7, 6, 0.42);
+  --panel-border: rgba(230, 216, 180, 0.13);
+  --shadow: 0 22px 70px rgba(0, 0, 0, 0.34);
   --champagne: Champagne_Limousines, "Century Gothic", Arial, sans-serif;
   --system: Arial, Helvetica, sans-serif;
 }
@@ -51,7 +51,7 @@ body {
   min-height: 100%;
   color: var(--white);
   background:
-    radial-gradient(circle at 50% 18%, rgba(231, 218, 184, 0.16), transparent 26rem),
+    radial-gradient(circle at 50% 18%, rgba(231, 218, 184, 0.11), transparent 28rem),
     linear-gradient(180deg, rgba(0, 0, 0, 0.18), #000 78%),
     url("/images/background_ma.jpg") top center / min(1024px, 100vw) auto no-repeat,
     #000;
@@ -89,10 +89,10 @@ img {
 }
 
 #page {
-  width: min(100%, 1120px);
+  width: min(100%, 1080px);
   min-height: 100vh;
   margin: 0 auto;
-  padding: 28px clamp(18px, 4vw, 48px) 34px;
+  padding: clamp(34px, 5vw, 58px) clamp(18px, 4vw, 48px) 42px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -100,7 +100,7 @@ img {
 
 #header_ma {
   width: 100%;
-  padding-top: clamp(8px, 2vw, 22px);
+  padding-top: clamp(8px, 2vw, 18px);
   text-align: center;
 }
 
@@ -108,22 +108,25 @@ img {
   width: 100%;
   display: flex;
   justify-content: flex-end;
-  gap: 8px;
+  gap: 10px;
   padding-right: clamp(0px, 5vw, 68px);
 }
 
 #flags a {
-  width: 31px;
-  height: 24px;
+  width: 28px;
+  height: 22px;
   display: grid;
   place-items: center;
-  border: 1px solid rgba(230, 216, 180, 0.2);
+  border: 1px solid rgba(230, 216, 180, 0.14);
   border-radius: 999px;
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(12px);
+  background: rgba(0, 0, 0, 0.14);
+  opacity: 0.78;
+  backdrop-filter: blur(6px);
 }
 
 #flags a:hover {
+  border-color: rgba(230, 216, 180, 0.34);
+  opacity: 1;
   transform: translateY(-1px);
 }
 
@@ -135,7 +138,7 @@ img {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.28);
 }
 
 #flag_fr {
@@ -147,8 +150,8 @@ img {
 }
 
 .brand-link {
-  width: min(580px, 90vw);
-  margin: clamp(18px, 4vw, 34px) auto 0;
+  width: min(540px, 86vw);
+  margin: clamp(30px, 5vw, 54px) auto 0;
   display: block;
 }
 
@@ -156,35 +159,44 @@ img {
   width: 100%;
   aspect-ratio: 580 / 118;
   background: url("/images/logo_fr-jga.png") center / contain no-repeat;
-  filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.56));
+  filter: drop-shadow(0 16px 26px rgba(0, 0, 0, 0.42));
 }
 
 #header_description {
-  width: min(760px, 100%);
-  margin: clamp(24px, 4vw, 38px) auto 0;
+  width: min(720px, 100%);
+  margin: clamp(34px, 5vw, 52px) auto 0;
   text-align: center;
+}
+
+#header_description::before {
+  width: 86px;
+  height: 1px;
+  margin: 0 auto clamp(22px, 3vw, 30px);
+  display: block;
+  content: "";
+  background: linear-gradient(90deg, transparent, rgba(230, 216, 180, 0.88), transparent);
 }
 
 #header_description .WhiteChampagne36 {
   display: block;
   color: #fff;
   font-family: var(--champagne);
-  font-size: clamp(2.6rem, 7vw, 4.7rem);
-  line-height: 0.95;
-  text-shadow: 0 16px 34px rgba(0, 0, 0, 0.72);
+  font-size: clamp(2.35rem, 5.7vw, 4.05rem);
+  line-height: 1.04;
+  text-shadow: 0 14px 30px rgba(0, 0, 0, 0.58);
 }
 
 #header_description .WhiteChampagne20,
 .WhiteChampagne20 {
   color: var(--muted);
   font-family: var(--champagne);
-  font-size: clamp(1.02rem, 2.4vw, 1.35rem);
+  font-size: clamp(1rem, 2vw, 1.24rem);
   line-height: 1.4;
 }
 
 #content_ma {
   width: 100%;
-  margin-top: clamp(22px, 5vw, 48px);
+  margin-top: clamp(42px, 7vw, 74px);
   text-align: center;
 }
 
@@ -193,40 +205,40 @@ article {
 }
 
 .entry-content {
-  width: min(850px, 100%);
+  width: min(760px, 100%);
   margin: 0 auto;
 }
 
 .WhiteChampagne18 {
   color: var(--white);
   font-family: var(--champagne);
-  font-size: clamp(1.08rem, 2vw, 1.32rem);
-  line-height: 1.58;
+  font-size: clamp(1.08rem, 1.75vw, 1.24rem);
+  line-height: 1.66;
 }
 
 .intro-card,
 .contact-card {
   border: 1px solid var(--panel-border);
-  border-radius: 8px;
+  border-radius: 6px;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.025)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.012)),
     var(--panel);
   box-shadow: var(--shadow);
-  backdrop-filter: blur(18px);
+  backdrop-filter: blur(8px);
 }
 
 .intro-card {
-  padding: clamp(24px, 4vw, 42px);
+  padding: clamp(30px, 5vw, 52px);
 }
 
 .intro-card p {
-  max-width: 680px;
+  max-width: 610px;
   margin: 0 auto;
   color: rgba(255, 250, 240, 0.86);
 }
 
 .intro-card p + p {
-  margin-top: 18px;
+  margin-top: 24px;
 }
 
 .intro-card strong {
@@ -246,29 +258,42 @@ article {
 }
 
 .contact-card {
-  width: min(440px, 100%);
-  margin: clamp(22px, 4vw, 36px) auto;
-  padding: 24px 28px;
+  width: min(390px, 100%);
+  margin: clamp(38px, 6vw, 64px) auto 0;
+  padding: 20px 26px;
   display: grid;
-  gap: 12px;
+  gap: 11px;
   justify-items: center;
 }
 
 .contact-card a {
-  font-size: clamp(1.08rem, 2.4vw, 1.34rem);
+  color: rgba(255, 250, 240, 0.88);
+  font-size: clamp(1.02rem, 1.8vw, 1.18rem);
+  letter-spacing: 0.02em;
+}
+
+.contact-card:hover {
+  border-color: rgba(230, 216, 180, 0.32);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.018)),
+    rgba(8, 8, 7, 0.5);
+}
+
+.contact-card:hover a {
+  color: var(--gold-soft);
 }
 
 .ornament {
-  width: min(286px, 100%);
+  width: min(245px, 100%);
   height: 1px;
   display: block;
-  background: linear-gradient(90deg, transparent, rgba(230, 216, 180, 0.95), transparent);
+  background: linear-gradient(90deg, transparent, rgba(230, 216, 180, 0.58), transparent);
 }
 
 #footer_ma {
   width: 100%;
   margin-top: auto;
-  padding-top: clamp(42px, 8vw, 78px);
+  padding-top: clamp(64px, 10vw, 112px);
   text-align: center;
 }
 
@@ -290,7 +315,7 @@ article {
   }
 
   #page {
-    padding-inline: 16px;
+    padding: 28px 16px 34px;
   }
 
   #flags {
@@ -298,8 +323,29 @@ article {
     padding-right: 0;
   }
 
+  .brand-link {
+    width: min(430px, 82vw);
+    margin-top: 22px;
+  }
+
+  #header_description {
+    margin-top: 34px;
+  }
+
+  #header_description .WhiteChampagne36 {
+    font-size: clamp(2.28rem, 12vw, 3rem);
+  }
+
   .intro-card {
-    padding: 24px 20px;
+    padding: 30px 22px;
+  }
+
+  #content_ma {
+    margin-top: 34px;
+  }
+
+  .contact-card {
+    margin-top: 28px;
   }
 
   .legal-card {
