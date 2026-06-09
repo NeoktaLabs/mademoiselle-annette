@@ -315,7 +315,7 @@ article {
   }
 
   #page {
-    padding: 28px 16px 34px;
+    padding: 16px 16px 22px;
   }
 
   #flags {
@@ -324,28 +324,59 @@ article {
   }
 
   .brand-link {
-    width: min(430px, 82vw);
-    margin-top: 22px;
+    width: min(340px, 72vw);
+    margin-top: 12px;
   }
 
   #header_description {
-    margin-top: 34px;
+    margin-top: 20px;
+  }
+
+  #header_description::before {
+    width: 68px;
+    margin-bottom: 16px;
   }
 
   #header_description .WhiteChampagne36 {
-    font-size: clamp(2.28rem, 12vw, 3rem);
+    font-size: clamp(2.05rem, 10vw, 2.55rem);
+    line-height: 0.98;
+  }
+
+  #header_description .WhiteChampagne20,
+  .WhiteChampagne20 {
+    font-size: 0.96rem;
+    line-height: 1.28;
   }
 
   .intro-card {
-    padding: 30px 22px;
+    padding: 22px 18px;
+  }
+
+  .intro-card p + p {
+    margin-top: 16px;
+  }
+
+  .WhiteChampagne18 {
+    font-size: 1rem;
+    line-height: 1.48;
   }
 
   #content_ma {
-    margin-top: 34px;
+    margin-top: 24px;
   }
 
   .contact-card {
-    margin-top: 28px;
+    width: min(340px, 100%);
+    margin-top: 20px;
+    padding: 16px 22px;
+  }
+
+  .contact-card a {
+    font-size: 0.98rem;
+  }
+
+  #footer_ma {
+    padding-top: 34px;
   }
 
   .legal-card {

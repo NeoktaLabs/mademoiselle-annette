@@ -44,7 +44,7 @@ const pages = {
       <div class="intro-card legal-card">
         <p><strong>Editeur</strong><br>
         A.JOSSERAND SA<br>
-        Siège Social : A. Josserand SA - Route de Lausanne 351 - 1293 Bellevue - Suisse</p>
+        Siège Social : A. Josserand SA - Rue Jacques Grosselin 8 - 1227 Carouge - Suisse</p>
         <p><strong>Hébergeur</strong><br>
         Infomaniak Network SA - 26, Avenue de la Praille, 1227 Carouge / Geneve, SWITZERLAND</p>
       </div>
