@@ -1,0 +1,346 @@
+@font-face {
+  font-family: "Champagne_Limousines";
+  src: url("/Champagne_Limousines.woff") format("woff"),
+       url("/Champagne_Limousines.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --gold: #c7ad7a;
+  --gold-soft: #e6d8b4;
+  --ink: #050504;
+  --white: #fffaf0;
+  --muted: rgba(255, 250, 240, 0.72);
+  --panel: rgba(11, 10, 8, 0.6);
+  --panel-border: rgba(230, 216, 180, 0.18);
+  --shadow: 0 28px 90px rgba(0, 0, 0, 0.48);
+  --champagne: Champagne_Limousines, "Century Gothic", Arial, sans-serif;
+  --system: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+div,
+span,
+p,
+a,
+img,
+article,
+footer,
+header,
+h1 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+html {
+  min-height: 100%;
+  overflow-y: scroll;
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100%;
+  color: var(--white);
+  background:
+    radial-gradient(circle at 50% 18%, rgba(231, 218, 184, 0.16), transparent 26rem),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.18), #000 78%),
+    url("/images/background_ma.jpg") top center / min(1024px, 100vw) auto no-repeat,
+    #000;
+  background-attachment: fixed, fixed, fixed, fixed;
+  font-family: var(--champagne);
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  content: "";
+  background:
+    linear-gradient(90deg, #000 0%, rgba(0, 0, 0, 0.42) 18%, transparent 50%, rgba(0, 0, 0, 0.42) 82%, #000 100%),
+    radial-gradient(circle at 50% 55%, transparent 0, rgba(0, 0, 0, 0.68) 45rem);
+}
+
+a {
+  color: var(--gold-soft);
+  text-decoration: none;
+  outline: none;
+  transition: color 160ms ease, opacity 160ms ease, transform 160ms ease;
+}
+
+a:hover {
+  color: #ffffff;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border: 0;
+}
+
+#page {
+  width: min(100%, 1120px);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 28px clamp(18px, 4vw, 48px) 34px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#header_ma {
+  width: 100%;
+  padding-top: clamp(8px, 2vw, 22px);
+  text-align: center;
+}
+
+#flags {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding-right: clamp(0px, 5vw, 68px);
+}
+
+#flags a {
+  width: 31px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(230, 216, 180, 0.2);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(12px);
+}
+
+#flags a:hover {
+  transform: translateY(-1px);
+}
+
+#flag_fr,
+#flag_uk {
+  width: 21px;
+  height: 14px;
+  display: block;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
+}
+
+#flag_fr {
+  background-image: url("/images/flags/fr.jpg");
+}
+
+#flag_uk {
+  background-image: url("/images/flags/uk.jpg");
+}
+
+.brand-link {
+  width: min(580px, 90vw);
+  margin: clamp(18px, 4vw, 34px) auto 0;
+  display: block;
+}
+
+#header_title {
+  width: 100%;
+  aspect-ratio: 580 / 118;
+  background: url("/images/logo_fr-jga.png") center / contain no-repeat;
+  filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.56));
+}
+
+#header_description {
+  width: min(760px, 100%);
+  margin: clamp(24px, 4vw, 38px) auto 0;
+  text-align: center;
+}
+
+#header_description .WhiteChampagne36 {
+  display: block;
+  color: #fff;
+  font-family: var(--champagne);
+  font-size: clamp(2.6rem, 7vw, 4.7rem);
+  line-height: 0.95;
+  text-shadow: 0 16px 34px rgba(0, 0, 0, 0.72);
+}
+
+#header_description .WhiteChampagne20,
+.WhiteChampagne20 {
+  color: var(--muted);
+  font-family: var(--champagne);
+  font-size: clamp(1.02rem, 2.4vw, 1.35rem);
+  line-height: 1.4;
+}
+
+#content_ma {
+  width: 100%;
+  margin-top: clamp(22px, 5vw, 48px);
+  text-align: center;
+}
+
+article {
+  width: 100%;
+}
+
+.entry-content {
+  width: min(850px, 100%);
+  margin: 0 auto;
+}
+
+.WhiteChampagne18 {
+  color: var(--white);
+  font-family: var(--champagne);
+  font-size: clamp(1.08rem, 2vw, 1.32rem);
+  line-height: 1.58;
+}
+
+.intro-card,
+.contact-card {
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.025)),
+    var(--panel);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.intro-card {
+  padding: clamp(24px, 4vw, 42px);
+}
+
+.intro-card p {
+  max-width: 680px;
+  margin: 0 auto;
+  color: rgba(255, 250, 240, 0.86);
+}
+
+.intro-card p + p {
+  margin-top: 18px;
+}
+
+.intro-card strong {
+  color: #fff;
+  font-family: var(--system);
+  font-size: 0.86rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.legal-card {
+  text-align: left;
+}
+
+.legal-card p {
+  max-width: 740px;
+}
+
+.contact-card {
+  width: min(440px, 100%);
+  margin: clamp(22px, 4vw, 36px) auto;
+  padding: 22px 28px;
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+}
+
+.contact-card a {
+  font-size: clamp(1.08rem, 2.4vw, 1.34rem);
+}
+
+.ornament {
+  width: min(286px, 100%);
+  height: 1px;
+  display: block;
+  background: linear-gradient(90deg, transparent, rgba(230, 216, 180, 0.95), transparent);
+}
+
+#TablePartenaires {
+  width: min(780px, 100%);
+  margin: 8px auto 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+  gap: 14px;
+  align-items: stretch;
+}
+
+.partner-logo {
+  min-height: 96px;
+  display: grid;
+  place-items: center;
+  padding: 18px 14px;
+  border: 1px solid rgba(230, 216, 180, 0.14);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.32);
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(10px);
+  transition: border-color 160ms ease, transform 160ms ease, background 160ms ease;
+}
+
+.partner-logo:hover {
+  transform: translateY(-2px);
+  border-color: rgba(230, 216, 180, 0.36);
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.partner-logo img {
+  max-height: 68px;
+  object-fit: contain;
+  filter: saturate(0.95);
+}
+
+#footer_ma {
+  width: 100%;
+  margin-top: auto;
+  padding-top: clamp(42px, 8vw, 78px);
+  text-align: center;
+}
+
+#footer_ma .WhiteArial14 {
+  color: rgba(255, 250, 240, 0.78);
+  font-family: var(--system);
+  font-size: 0.82rem;
+  letter-spacing: 0.03em;
+}
+
+#footer_ma a {
+  color: rgba(230, 216, 180, 0.76);
+}
+
+@media screen and (max-width: 640px) {
+  body {
+    background-size: auto, auto, 1200px auto, auto;
+    background-position: center, center, top center, center;
+  }
+
+  #page {
+    padding-inline: 16px;
+  }
+
+  #flags {
+    justify-content: center;
+    padding-right: 0;
+  }
+
+  .intro-card {
+    padding: 24px 20px;
+  }
+
+  .legal-card {
+    text-align: center;
+  }
+
+  #TablePartenaires {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
