@@ -43,11 +43,35 @@ const pages = {
     subtagline: "Personnel de Maison / Organisation de maison privée / Courtage immobilier",
     body: `
       <div class="intro-card legal-card">
-        <p><strong>Editeur</strong><br>
+        <p><strong>Propriétaire</strong><br>
         A.JOSSERAND SA<br>
-        Siège Social : A. Josserand SA - Rue Jacques Grosselin 8 - 1227 Carouge - Suisse</p>
+        Siège Social : A. Josserand SA - Rue Jacques Grosselin 8 - 1227 Carouge - Suisse<br>
+        N° registre commerce: CH-660.1.193.012-0<br>
+        Forme juridique: Société anonyme<br>
+        Secteur: Placement de main d'œuvre</p>
         <p><strong>Hébergeur</strong><br>
-        Infomaniak Network SA - 26, Avenue de la Praille, 1227 Carouge / Geneve, SWITZERLAND</p>
+        Proudly hosted by Cloudflare</p>
+      </div>
+    `
+  }),
+  "/uk/mentions-legales": renderPage({
+    lang: "en",
+    title: "Legal Notice | Mademoiselle Annette",
+    description: "Legal notice for Mademoiselle Annette.",
+    path: "/uk/mentions-legales",
+    noindex: true,
+    tagline: "Consulting and Solutions",
+    subtagline: "Domestic Staff / Private Household Management / Real Estate Brokerage",
+    body: `
+      <div class="intro-card legal-card">
+        <p><strong>Owner</strong><br>
+        A.JOSSERAND SA<br>
+        Registered office: A. Josserand SA - Rue Jacques Grosselin 8 - 1227 Carouge - Switzerland<br>
+        Commercial register no.: CH-660.1.193.012-0<br>
+        Legal form: Public limited company<br>
+        Sector: Recruitment and placement of personnel</p>
+        <p><strong>Hosting</strong><br>
+        Proudly hosted by Cloudflare</p>
       </div>
     `
   })
@@ -66,6 +90,7 @@ function contactBlock() {
 function renderPage({ lang, title, description, path, noindex = false, tagline, subtagline, body }) {
   const canonical = `${SITE_ORIGIN}${path === "/" ? "/" : path}`;
   const isFrench = lang === "fr-FR";
+  const pageLinks = getPageLinks(path);
   return `<!doctype html>
 <html lang="${lang}" prefix="og: http://ogp.me/ns#">
 <head>
@@ -75,11 +100,11 @@ function renderPage({ lang, title, description, path, noindex = false, tagline, 
   <meta name="description" content="${description}">
   <meta name="robots" content="${noindex ? "noindex, follow" : "index, follow"}">
   <link rel="canonical" href="${canonical}">
-  ${path === "/" || path === "/uk" ? `<link rel="alternate" hreflang="fr" href="${SITE_ORIGIN}/">` : ""}
-  ${path === "/" || path === "/uk" ? `<link rel="alternate" hreflang="en" href="${SITE_ORIGIN}/uk">` : ""}
-  ${path === "/" || path === "/uk" ? `<link rel="alternate" hreflang="x-default" href="${SITE_ORIGIN}/">` : ""}
+  ${pageLinks ? `<link rel="alternate" hreflang="fr" href="${SITE_ORIGIN}${pageLinks.fr}">` : ""}
+  ${pageLinks ? `<link rel="alternate" hreflang="en" href="${SITE_ORIGIN}${pageLinks.en}">` : ""}
+  ${pageLinks ? `<link rel="alternate" hreflang="x-default" href="${SITE_ORIGIN}${pageLinks.fr}">` : ""}
   <meta property="og:locale" content="${isFrench ? "fr_FR" : "en_GB"}">
-  <meta property="og:type" content="${path === "/mentions-legales" ? "article" : "website"}">
+  <meta property="og:type" content="${path.endsWith("mentions-legales") ? "article" : "website"}">
   <meta property="og:title" content="${title}">
   <meta property="og:description" content="${description}">
   <meta property="og:url" content="${canonical}">
@@ -99,10 +124,10 @@ function renderPage({ lang, title, description, path, noindex = false, tagline, 
   <div id="page">
     <div id="header_ma">
       <div id="flags">
-        <a href="/" aria-label="Version française"><span id="flag_fr"></span></a>
-        <a href="/uk" aria-label="English version"><span id="flag_uk"></span></a>
+        <a href="${pageLinks?.fr || "/"}" aria-label="Version française"><span id="flag_fr"></span></a>
+        <a href="${pageLinks?.en || "/uk"}" aria-label="English version"><span id="flag_uk"></span></a>
       </div>
-      <a class="brand-link" href="${path === "/uk" ? "/uk" : "/"}" aria-label="Mademoiselle Annette"><div id="header_title"></div></a>
+      <a class="brand-link" href="${isFrench ? "/" : "/uk"}" aria-label="Mademoiselle Annette"><div id="header_title"></div></a>
       <div id="header_description">
         <h1 class="WhiteChampagne36">${tagline}</h1>
         <span class="WhiteChampagne20">${subtagline}</span>
@@ -115,11 +140,23 @@ function renderPage({ lang, title, description, path, noindex = false, tagline, 
     </div>
     <div id="footer_ma">
       <span class="WhiteArial14">A.JOSSERAND SA -
-      <a href="/mentions-legales">Mentions L&eacute;gales</a></span>
+      <a href="${isFrench ? "/mentions-legales" : "/uk/mentions-legales"}">${isFrench ? "Mentions L&eacute;gales" : "Legal Notice"}</a></span>
     </div>
   </div>
 </body>
 </html>`;
+}
+
+function getPageLinks(path) {
+  if (path === "/" || path === "/uk") {
+    return { fr: "/", en: "/uk" };
+  }
+
+  if (path === "/mentions-legales" || path === "/uk/mentions-legales") {
+    return { fr: "/mentions-legales", en: "/uk/mentions-legales" };
+  }
+
+  return null;
 }
 
 function structuredData({ lang, title, description, canonical }) {
