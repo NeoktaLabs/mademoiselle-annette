@@ -139,11 +139,11 @@ img {
 }
 
 #flag_fr {
-  background-image: url("/images/flags/fr.jpg");
+  background-image: url("/images/flags/fr.svg");
 }
 
 #flag_uk {
-  background-image: url("/images/flags/uk.jpg");
+  background-image: url("/images/flags/uk.svg");
 }
 
 .brand-link {
@@ -248,9 +248,9 @@ article {
 .contact-card {
   width: min(440px, 100%);
   margin: clamp(22px, 4vw, 36px) auto;
-  padding: 22px 28px;
+  padding: 24px 28px;
   display: grid;
-  gap: 10px;
+  gap: 12px;
   justify-items: center;
 }
 
@@ -263,40 +263,6 @@ article {
   height: 1px;
   display: block;
   background: linear-gradient(90deg, transparent, rgba(230, 216, 180, 0.95), transparent);
-}
-
-#TablePartenaires {
-  width: min(780px, 100%);
-  margin: 8px auto 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
-  gap: 14px;
-  align-items: stretch;
-}
-
-.partner-logo {
-  min-height: 96px;
-  display: grid;
-  place-items: center;
-  padding: 18px 14px;
-  border: 1px solid rgba(230, 216, 180, 0.14);
-  border-radius: 8px;
-  background: rgba(0, 0, 0, 0.32);
-  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.28);
-  backdrop-filter: blur(10px);
-  transition: border-color 160ms ease, transform 160ms ease, background 160ms ease;
-}
-
-.partner-logo:hover {
-  transform: translateY(-2px);
-  border-color: rgba(230, 216, 180, 0.36);
-  background: rgba(255, 255, 255, 0.045);
-}
-
-.partner-logo img {
-  max-height: 68px;
-  object-fit: contain;
-  filter: saturate(0.95);
 }
 
 #footer_ma {
@@ -340,7 +306,4 @@ article {
     text-align: center;
   }
 
-  #TablePartenaires {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 }
